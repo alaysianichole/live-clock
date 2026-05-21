@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  background:transparent;
+  font-family:'Courier Prime', monospace;
+  color:black;
+  font-size:16px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+#location{opacity:.6;}
+</style>
+</head>
+<body>
+<div id="clock"></div>
+<div id="location">nashville, tn</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  let time = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Chicago',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  }).format(now);
+
+  time = time.replace('AM', 'am').replace('PM', 'pm');
+  document.getElementById('clock').textContent = time;
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
