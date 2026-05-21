@@ -1,59 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      color: #222222;
-      font-family: "Courier Prime", monospace;
-      font-size: 12px;
-      line-height: 1;
-      width: 100%;
-      overflow: hidden;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 
-    #clock {
-      white-space: nowrap;
-      letter-spacing: 0.5px;
-    }
-  </style>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Courier Prime", monospace;
+  font-size: 12px;
+  color: #222222;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+#clock {
+  display: inline-block;
+}
+</style>
 </head>
 
 <body>
-  <div id="clock"></div>
 
-  <script>
-    function updateClock() {
-      const now = new Date();
+<div id="clock"></div>
 
-      const date = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/Chicago",
-        month: "long",
-        day: "numeric",
-        year: "numeric"
-      }).format(now);
+<script>
+function updateClock() {
 
-      let time = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/Chicago",
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
-      }).format(now);
+  const now = new Date();
 
-      time = time.replace("AM", "am").replace("PM", "pm");
+  const date = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  }).format(now);
 
-      document.getElementById("clock").textContent =
-        date + " @ " + time + " in Nashville, TN, USA";
-    }
+  let time = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  }).format(now);
 
-    updateClock();
-    setInterval(updateClock, 1000);
-  </script>
+  time = time.replace("AM", "pm").replace("PM", "pm");
+
+  document.getElementById("clock").textContent =
+    `${date} @ ${time} in Nashville, TN, USA`;
+
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
 </body>
 </html>
