@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-<style>
-body {
-  margin: 0;
-  background: transparent;
-  font-family: 'Courier Prime', monospace;
-  font-size: 12px;
-  color: #222222;
-  letter-spacing: 1.5px;
-  white-space: nowrap;
-}
-</style>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #222222;
+      font-family: "Courier Prime", monospace;
+      font-size: 12px;
+      line-height: 1;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #clock {
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+    }
+  </style>
 </head>
 
 <body>
-<div id="clock"></div>
+  <div id="clock"></div>
 
-<script>
-function updateClock() {
-  const now = new Date();
+  <script>
+    function updateClock() {
+      const now = new Date();
 
-  const date = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/Chicago',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  }).format(now);
+      const date = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Chicago",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      }).format(now);
 
-  const time = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/Chicago',
-    hour: 'numeric',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true
-  }).format(now).replace('AM', 'am').replace('PM', 'pm');
+      let time = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Chicago",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      }).format(now);
 
-  document.getElementById('clock').textContent =
-    `${date} @ ${time} in Nashville, TN, USA`;
-}
+      time = time.replace("AM", "am").replace("PM", "pm");
 
-updateClock();
-setInterval(updateClock, 1000);
-</script>
+      document.getElementById("clock").textContent =
+        date + " @ " + time + " in Nashville, TN, USA";
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
 </body>
 </html>
